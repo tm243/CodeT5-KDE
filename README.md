@@ -9,6 +9,10 @@ and select _full-dataset-KDE-kdeconnect-C++_
 
 You are encouraged to improve and extend the dataset.
 
+## Demo
+
+Follow this link to try out the live model: https://www.opendocstring.com/#demo
+
 ## Setup
 
 Make yourself a folder and install the required Python packages:
