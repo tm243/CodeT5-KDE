@@ -3,6 +3,8 @@ Basic REST API
 """
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from pydantic import BaseModel
 
 from transformers import T5ForConditionalGeneration
@@ -11,6 +13,14 @@ from transformers import RobertaTokenizer
 tokenizer = RobertaTokenizer.from_pretrained("Salesforce/codet5-small")
 model = T5ForConditionalGeneration.from_pretrained('api/saved-pretrained-kde-cpp-tm')
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class Item(BaseModel):
     name: str

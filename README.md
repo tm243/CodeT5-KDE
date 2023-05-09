@@ -21,7 +21,7 @@ Make yourself a folder and install the required Python packages:
 
 ```source .env/bin/activate```
 
-```pip -r requirements.txt```
+```pip install -r requirements.txt```
 
 Before you run the model you need to download the weights:
 
