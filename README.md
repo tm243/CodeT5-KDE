@@ -49,9 +49,13 @@ Run the local server:
 
 ```uvicorn api.rest:app --port 7999 --reload```
 
-Make a POST request to get the summary of some code:
+Make a POST request to get the summary of some code.
 
-Python example:
+### Browser
+
+Open demo.html in your browser and paste some code. It will make requests to the local server you just started.
+
+### Python
 
 ```
 import requests
