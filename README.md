@@ -25,7 +25,7 @@ Make yourself a folder and install the required Python packages:
 
 Before you run the model you need to download the weights:
 
-```wget https://www.opendocstring.com/downloads/weights/codet5/saved-pretrained-kde-cpp-tm.tar.gz```
+```wget https://www.opendocstring.com/downloads/weights/codet5/saved-pretrained-kde-cpp-multisum-2023-05-10-06.tar.gz```
 
 and unpack them. Or use the script:
 
