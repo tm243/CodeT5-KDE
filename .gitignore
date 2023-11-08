@@ -1,2 +1,3 @@
 __pycache__/
-api/saved-pretrained-kde-cpp-tm/
+*/api/saved-pretrained-kde-cpp-tm/
+.env
