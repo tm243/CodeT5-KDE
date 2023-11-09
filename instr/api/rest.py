@@ -11,7 +11,7 @@ from transformers import AutoModelForSeq2SeqLM
 from transformers import AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("Salesforce/codet5p-770m")
-model = AutoModelForSeq2SeqLM.from_pretrained('api/saved-pretrained-kde-cpp-tm')
+model = AutoModelForSeq2SeqLM.from_pretrained('api/trained/kde-cpp-qml-instructions/final_checkpoint/')
 app = FastAPI()
 
 app.add_middleware(
@@ -36,12 +36,10 @@ def index():
 
 @app.post("/generate")
 def generate(request: InstructionItem):
-    print("A")
-    print(request)
     instr = request.instr
 
     input_ids = tokenizer(instr, return_tensors='pt').input_ids
-    outputs = model.generate(input_ids, max_new_tokens=500)
+    outputs = model.generate(input_ids, max_new_tokens=300)
     code = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
     return {
