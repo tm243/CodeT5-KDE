@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Code Instructions</title>
+    <link href="https://www.opendocstring.com/nightly/prism.css" rel="stylesheet">
+    <style>
+      .blink {
+	  animation: blinker 3s linear infinite;
+      }
+
+      @keyframes blinker {
+	  50% {
+	      opacity: 0.3;
+	  }
+      }
+    </style>
+  </head>
+  <body style="font-family: Arial sans-serif;">
+    <h1>CodeT5+-KDE Demo</h1>
+    <textarea id="input" rows="5" cols="140">
+Write a function to find the maximum difference between two numbers in a given array.
+    </textarea>
+    <br>
+    <button onclick="generate()">Generate</button>
+    <button onclick="resetInstr()">Reset</button>
+    <span class="info blink" id="info" style="font-size: 10px; color: gray;"></span>
+    <br>
+    <pre id="output" class="inference-code language-javascript line-numbers" tabindex="0" style="font-size: 12px;">
+      <code class="language-cpp">
+      </code>
+    </pre>
+    <div class="error" id="error" style="color: red;"></div>
+
+    <script>
+      function generate() {
+	document.getElementById("error").value = "";
+	document.getElementById("output").innerHTML = "";
+	document.getElementById("info").innerHTML = "Generating";
+
+        const inputText = document.getElementById("input").value;
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:7998/generate", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+          if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            const response = JSON.parse(this.responseText);
+              document.getElementById("output").innerHTML = response.code;
+	      document.getElementById("info").innerHTML = "";
+          }
+        };
+        xhr.onerror = function() {
+                document.getElementById("error").innerHTML = "Error: Could not connect to server. Make sure it is running on http://localhost:7998";
+            };
+        xhr.send(JSON.stringify({ 'instr': inputText }));
+      }
+      function resetInstr() {
+        document.getElementById("input").value = "Enter instructions here...";
+      }
+    </script>
+    <script src="https://www.opendocstring.com/nightly/prism.js"></script>
+  </body>
+</html>
